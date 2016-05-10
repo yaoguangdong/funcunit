@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+
+注意包结构的唯一性，包结构相同时，新工程会覆盖掉旧的工程。
+应用程序的发布：
+	1.去掉log
+	2.签名，并设置版本号
+	3.准备好依赖的远程服务器
+	4.如果上传到AndroidMarket，则必须保证包名唯一、已经签名（签名机制：非对称加密私钥公钥）。
+发布方式：
+	1.直接apk传播
+	2.放在网站上供下载，OTA服务器，提供http的apk的地址，并提供一个webService检测最新版本，应用程序启动时，调用webservice，
+	如果有更新，提示用户升级，访问apk网址即可（自动或手动打开web浏览器，下载到系统 Download，系统会以Notification方式
+	提示，用户点击触发apk安装动作）
+	3.放在Market上供下载，market提供一个软件管理的协议market://...apk,自动发现新版本。
+	4.自己写程序下载并安装
+
+1.advancedListView:
+	初步实现列表项动态扩展、列表项中的图片异步加载、本地缓存。
+	+ advanced_listview_footer.xml
+	+ advanced_listview_item.xml
+	+ advanced_listview.xml
+2.customView
+	实现简单的自定义控件，实现接口回调监听文本被点击事件、实现在文字周围描线。
+	+ custom_btn.xml
+3.FlashLight
+	实现一个手电筒小程序、学到怎么改变系统配置、保存系统配置等。
+	+随便找一个布局文件实验就行。
+4.TextViewActivity
+	Sundy老师讲的、text前有图片、单击图片变换xml实现、给文本框加shape，设置输入类型等、样式
+	+ text_view.xml
+	+ gradient.xml
+	
+5.titlebarFootbar
+	使用布局文件简单的实现固定的顶部标题栏和低部工具栏、在标题栏显示进度条
+	+ custom_footbar.xml
+	+ custom_titlebar_footbar.xml
+	+ custom_titlebar.xml
+6.viewPage
+	网上找的关于屏幕横向滑动的布局三种实现比较
+	在包中由desc.xml来说明，详细介绍
+	+ view_pager_main.xml
+	+ view_pager1.xml
+	+ view_pager2.xml
+7.webViewJavaJS
+	android webview js交互， 响应webview中的图片点击事件 
+	方案思路，
+		1.在点击图片的时候调用本地的java方法并给出响应的图片地址
+		2.本地获得图片地址后，开启一个遮罩activity进行显示和处理
+	+ webview_javajs.xml
+	+ webview_main.xml
+8.setting.xml
+	Sundy老师的SharePreference设置界面实现
+	右键res，选择建立一个Android XML文件，从类别中选择Preference，选择PreferenceSreen，文件名叫setting.xml	
+9.content_provider.XML
+	Sundy老师讲解content provider URI 格式：<standard_prefix>://<authority>/<data_path>/<id>
+	系统的ContentProvider在系统启动时，就自动初始化。建立在Binder机制之上。
+	content Provider 可以封装任何数据存储，file、sharePreference、db、
+	系统设置setting（wifi的状态、系统的配置等）、用户词典UserDictionary（翻译软件使用）
+	Browser的书签、历史记录等、通话记录Calllog、calendar日历、系统媒体资源MediaStorage、等
+	
+	需要定义权限：android.permission.READ_CONTACTS
+	1.自定义contentProvider,也可以封装自己的db用来对外提供数据操作接口。
+		<porvider android:multiprocess="true"...表示当前的自定义组件对其他程序开放，否则其他程序不能找到这个provider。
+		自定义contentprovider无需启动，就能被其他程序在访问时被启动。原理是提供provider组件的程序在安装时，会把provider组件注册
+		到系统providerManager中。接受调用时，启动宿主程序，操作完后宿主进程的状态切换到empty。
+		
+	2.使用resolver调用。 
+	3.startManagingCursor(Cursor cursor)非常有用，作用是将查询结果的cursor交给当前的Activity管理，防止内存泄露。
+
+10.BroadcastReceiver（在cn.farcanton.content_provider包中）
+	Sundy老师讲解	在系统内通知和判定执行状态，两种消息：ordered Msg 和normal Msg,前者只被一个高优先级的接受者处理，
+	不会传递下去。系统的消息是rodered Msg ，系统的receiver优先级都是负的
+	异步发送。
+	1.系统执行状态，开关机、SDcard插拔、电量低等。receiver的优先级android：preority。（-1000~1000）
+	2.自定义执行状态
+	context.sendBroadcast(intent);
+	context.sendOrderedBroadcast(intent,null);
+	
+	action不同，接受的消息不同，action相同的receiver一般有preority指定优先级。
+	onReceiver和onHandler一样都在主线程中，注意发送消息>5s或接受消息处理>10s，出现ANR。
+
+11.launcher
+  launcher中的Shortcut：
+
+	分析android的源码中launcher中的shortcut过程，自己的shortcut工程：
+	action:com.android.launcher.action.INSTALL_SHORTCUT是从源码中copy来的，这种方法就是拦截了系统的action，并把自己的
+	快捷方式资源返回给系统。
+	需要的权限也是源码中自定义的copy来：
+	com.android.launcher.permission.INSTALL_SHORTCUT
+  Meta-data 示例：widget中用来进程间通信时，序列化对象用的。<meta-data android:name是key ;android:value是值，
+  	android:resource可以指向xml或drawable等。
+  	LauncherTestmain中。
+  appWidgetProvider示例，layout_widget_provider.xml + app_widget_provider.xml
+  
+  AppWidget 官方的很好的例子是Wiktionary和StackViews和Home
+  
+12.animation
+	结合Sundy、官方文档、做的小例子。是个下载的动画。
+	使用view_animation.xml,和FrameAnimationTest
+	
+13.viewPage.AViewFlipper,我的动画效果
+	以动画切换视图。同时有手势滑动的效果。
+
+14.GridView
+	格子视图，展示，在线视频列表，左边和右边是悬浮按钮，用来翻页，点击每一项，弹出一个DialogActivity，半透明，其中
+	展示当前视频项的海报和介绍。
+	整个格子视图，可以用手势控制viewFlipper以动画的方式切换（13）。
+	格子视图，使用异步缓存图片。
+一个按钮要实现悬浮，就要用到系统顶级窗口相关的WindowManager，WindowManager.LayoutParams。
+那么在AndroidManifest.xml中添加权限：<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+15.异步缓存,介绍cn.farcanton.cache
+	使用软引用能防止内存泄露，增强程序的健壮性.具体请看DataCache类的说明
+ 
+16.防苹果的随意拖动的设置按钮floatButton
+	把下载动画按钮，做成悬浮按钮，类似迅雷的。
+	a.如何获取到状态栏的高度  b.悬浮窗口的拖动  c.悬浮窗口的点击事件 
+	
+17.水平滚动的视图horizontalScroll
+	gh_left_4.png、gh_right_4.png、picture_item.xml、horizontal_scroll.xml.
+18.google地图
+
+在模拟器上，做的实验最终，失败，因为缺少com.google.android.maps.jar共享库，但又不能真正导入。
+	version1的googleMapKey的申请从20130318停止，但旧的MapKey还能使用。现在version2的map Key处于开放中。
+	GoogleMapV1是以前旧版本的GoogleMap实例。
+	assets 中存放的是com.google.android.maps.jar和修改后的系统文件，无论在模拟器还是真机上都需要导入的扩展库。
+	1.导入到system/framework下
+		一般模拟器在导入时，出现framework只读的错误提示，解决办法：
+			1.进入platform-tools目录，运行adb命令（不是adb shell，adb shell没有root权限）
+			2.运行adb remount -o rw，就会把system重新挂载为rw权限的目录
+			3.有不明白的就输入adb help
+			4.将com.google.android.maps.jar导入framework中，如果adb push 不行，就用eclipse图形界面。
+	2./etc/permissions/platform.xml中添加一行：
+		<library name="com.google.android.maps" file="/system/framework/com.google.android.maps.jar"/>
+	重启。
+通过阅读GoogleMaps的官方文档，得知，需要安装Google paly Service.	
+研究中发现 真机中 system/framework文件夹下缺少两个重要文件：
+将下载的两个包拷贝到真机的system/framework下
+com.google.android.maps.jar
+com.google.android.gtalkservice.jar 
+其他的修改照上面，就行了。
+
+19.Gson.jar解析json数据
+json_Gson
+20.popupWindow 直接使用footbartitlebar的布局。
+我一直在寻觅的神秘组件,他和dialog相比：
+	1.是非模态的，非阻塞式的，后面的activity能够获取焦点。可以当做非模态对话框使用。
+	2.位置灵活，可以随意放置。
+	dialog：1.是模态的，阻塞式的，后面的activity不能获取焦点。2.位置固定，不能移动。
+要点：
+ 1.摆放位置：
+ 	showAsDropDown(View anchor)：相对某个控件的位置（正左下方），无偏移
+	showAsDropDown(View anchor, int xoff, int yoff)：相对某个控件的位置，有偏移
+	showAtLocation(View parent, int gravity, int x, int y)：
+		相对于父控件的位置（例如正中央Gravity.CENTER，下方Gravity.BOTTOM等），可以设置偏移或无偏移
+ 2.交互行为：
+ 	 // 点击窗口外消失
+ 	 popupWindow.setBackgroundDrawable(new ColorDrawable(0));
+ 	 
+ 	 //setFocusable(false);的时候，说明PopuWindow不能获得焦点，即使设置设置了背景不为空也不能点击外面消失，
+ 	 //只能由dismiss()消失，但是外面的View的事件还是可以触发,back键也可以顺利dismiss掉。
+ 	 popupWindow.setFocusable(true);
+ 	 
+	 popupWindow.setTouchable(true);
+	 
+	 //这里设置显示PopuWindow之后在外面点击是否有效。如果为false的话，那么点击PopuWindow外面并不会关闭PopuWindow。
+	 //当然这里很明显只能在Touchable下才能使用。点击窗口外消失,需要设置背景、焦点、touchable、update
+	 popupWindow.setOutsideTouchable(true);
+	 
+	 popupWindow.update();
+ 3.动画效果：
+ 	 //设置窗口显示的动画效果
+ 	 popupWindow.setAnimationStyle(R.style.PopupAnimation);
+
+21.消息推送MQTT
+dalelane.android.mqtt包下是使用MQTT实现的一个客户端，
+wake UP Lock、每隔几秒唤醒一次、各种boardcastReceiver等等
+
+
+22.网络操作：
+只是一些示例代码，不能运行
+cn.farcanton.net.HttpClientTest
+
+23.手势识别GestureActivity2
+手势文件的制作可以使用官方自带的工具。
+	1.从raw中加载手势库文件
+	2.使用GestureOverlayView接受用户的手势
+	3.使用GestureLibrary的recognize识别手势
+24.传感器的操作
+//取得传感器管理器
+	SensorManager sensorManager = (SensorManager)this.getSystemService(SENSOR_SERVICE)  ;
+//使用传感器管理器获取加速传感器。
+    Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)  ;
+    
+25.简单框架的封装 cn.farcanton.frameTest
+
+26.android:theme="@style/Theme.FloatActivity"创建窗口样式的activity
+	cn.farcanton.floatActivity
+	float_box.xml：activity背景样式
+	float_activity.xml:布局文件
+	styles.xml中的Theme.FloatActivity：自定义主题
+	
+27.自定义字体文件的应用
+	cn.farcanton.textView.TypeFaceActivity
+
+28.获取基站信息
+	cn.farcanton.textView.TypeFaceActivity
+
+29.执行ping命令
+	cn.farcanton.listView.ListViewInScrollViewActivity
+	
+30.彻底退出程序的探索
+	cn.farcanton.textView.TypeFaceActivity
+31.API 9 以上android系统自带的DownloadManager的使用
+	cn.farcanton.downloader
+32.Jackjson
+	cn.farcanton.json
+33.获取硬件信息
+    cn.farcanton.hardwareinfo
+34.从左边显示的菜单栏，点击或点击其他区域隐藏此菜单栏。原理类似于PopupWindow和常见的左右滑动菜单（SlidingMenu）
+	cn.farcanton.popupViewRibbonMenuView + PopupActivity2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ -->

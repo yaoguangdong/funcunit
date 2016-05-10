@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+xmlns:app="http://schemas.android.com/apk/res/cn.farcanton.activity"
+中的cn.farcanton.activity与AndroidManifest.xml中的package="cn.farcanton.activity"一致 
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/image04"
+    >
+   <TextView  
+    android:id="@+id/text1"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:hint="no data"
+    android:ellipsize="marquee"
+    android:marqueeRepeatLimit="marquee_forever"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:singleLine="true"
+    android:drawableLeft="@drawable/icon"
+    android:drawablePadding="10dp"
+    android:autoLink="all"
+    android:textColorLink="#FF00cc"
+    />
+</LinearLayout>

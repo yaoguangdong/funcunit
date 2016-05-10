@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset xmlns:android="http://schemas.android.com/apk/res/android" 
+
+    android:drawable="@drawable/camera_btn_style"
+    android:insetLeft="50dp"
+    android:insetRight="50dp"
+    android:insetTop="20dp"
+    android:insetBottom="20dp">
+    
+</inset>
+<!-- 
+
+元素<inset>定义这个drawable为InsetDrawable，必须作为根节点。
+	属性：
+	android:drawableDrawable 资源 。必须的。引用一个drawable资源
+	android:insetTop尺寸。与顶部的距离。可以使一个尺寸值，或者一个尺寸的资源。
+	android:insetRight尺寸。与右边的距离。可以使一个尺寸值，或者一个尺寸的资源。
+	android:insetBottom尺寸。与底部的距离。可以使一个尺寸值，或者一个尺寸的资源。
+	android:insetLeft尺寸。与左边的距离。可以使一个尺寸值，或者一个尺寸的资源
+	
+	 -->

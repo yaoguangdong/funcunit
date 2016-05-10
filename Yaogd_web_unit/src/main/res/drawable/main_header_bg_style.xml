@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+ 
+    <!-- 阴影部分 -->
+    <item android:top="48dp">
+        <shape android:shape="rectangle" >
+            <gradient
+                android:angle="270"
+                android:startColor="@color/gray_title_deliver" 
+                android:endColor="@color/gray_bg"
+                />
+        </shape>
+    </item>
+ 
+    <!-- 背景部分 -->
+    <item android:bottom="2dp">
+        <shape android:shape="rectangle" >
+ 			<solid android:color="@color/gray_title" />
+        </shape>
+    </item>
+ 
+</layer-list>

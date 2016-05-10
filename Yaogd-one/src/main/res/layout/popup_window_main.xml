@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"  
+    >
+    <ViewFlipper 
+        android:id="@+id/popViewFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_gravity="top">
+
+        <ListView
+            android:id="@+id/listViewFirst"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@android:color/transparent"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@drawable/menu_bg_line"
+            android:dividerHeight="1dp"
+            android:drawSelectorOnTop="false"
+            android:scrollbars="vertical" 
+            />
+
+        <ListView  
+			android:id="@+id/listViewSecond"
+			android:divider="@drawable/menu_bg_line" 
+			android:dividerHeight="1dp"
+			android:background="@android:color/transparent"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+   			android:drawSelectorOnTop="false"
+   			android:scrollbars="vertical"
+   			android:cacheColorHint="@android:color/transparent"
+			android:entries="@array/popArray2"
+            android:choiceMode="singleChoice"/>
+    </ViewFlipper>
+    <LinearLayout 
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:layout_weight="6"
+    	android:orientation="horizontal" 
+    	>
+        <Button 
+            android:id="@+id/popViewTitle1"
+            android:layout_width="fill_parent"
+    		android:layout_height="fill_parent"
+    		android:background="@drawable/custom_btn_selector"
+    		android:layout_gravity="left"
+    		android:layout_weight="1"
+    		android:text="@string/pop_title1"
+    		/>
+        <View android:background="#FFFFFF" android:layout_height="fill_parent" android:layout_width="1px"/>
+        <Button 
+            android:id="@+id/popViewTitle2"
+            android:layout_width="fill_parent"
+    		android:layout_height="fill_parent"
+    		android:layout_weight="1"
+    		android:background="@drawable/custom_btn_selector"
+    		android:layout_gravity="right"
+    		android:text="@string/pop_title2"
+    		/>
+        
+    </LinearLayout>
+</LinearLayout>

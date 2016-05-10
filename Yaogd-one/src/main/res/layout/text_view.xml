@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+	<ScrollView 
+	    android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+	<LinearLayout 
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    >
+    	<TextView  
+		    android:id="@+id/text111"
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:textSize="20sp"
+		    />
+        
+        <TextView  
+		    android:id="@+id/text1"
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    
+		    android:hint="no data"
+		    android:ellipsize="marquee"
+		    android:marqueeRepeatLimit="marquee_forever"
+		    android:focusable="true"
+		    android:focusableInTouchMode="true"
+		    android:singleLine="true"
+		    
+		    android:drawableLeft="@drawable/icon"
+		    android:drawablePadding="10dp"
+		    android:autoLink="all"
+		    android:textColorLink="#FF00cc"
+		    />
+		<TextView
+		    android:id="@+id/text2"
+		    
+		    android:hint="请输入数字"
+		    
+		    android:numeric="integer"
+		    android:inputType="number"
+		    android:background="@drawable/gradient_central"
+		    android:text="http://AndroidDesignBook.com"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:ellipsize="marquee"
+		    android:marqueeRepeatLimit="marquee_forever"
+		    android:focusable="true"
+		    android:focusableInTouchMode="true"
+		    android:singleLine="true"
+		    android:autoLink="all"
+		    />
+		<Button
+		    android:id="@+id/btn1"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:background="@drawable/btn_change"
+		    />
+		
+		<Button style="@style/btnStyle" />
+		
+		<ToggleButton
+		    android:id="@+id/toggleBtn"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textOn="open"
+		    android:textOff="close"
+		    android:text="水龙头"
+		    />
+		
+		
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="测试系统样式:android:textAppearance=?android:attr/textAppearanceLarge"
+		    android:textAppearance="?android:attr/textAppearanceLarge"
+		  	android:minHeight="?android:attr/listPreferredItemHeight"
+		    />
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="测试系统样式:style=?android:attr/textAppearanceMedium"
+		    style="?android:attr/textAppearanceMedium" 
+		    />
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="测试系统样式:style=?android:attr/textAppearanceSmall"
+		    style="?android:attr/textAppearanceSmall"
+		    />
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="测试系统字体颜色 :...textColorPrimary"
+		    android:textColor="?android:attr/textColorPrimary" 
+		    />
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="测试系统字体颜色 :...textColorSecondary"
+		    android:textColor="?android:attr/textColorSecondary" 
+		    />
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="测试系统字体颜色 :...textColorTertiary"
+		    android:textColor="?android:attr/textColorTertiary" 
+		    />
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="测试系统字体颜色 :...textColorPrimaryInverse"
+		    android:textColor="?android:attr/textColorPrimaryInverse" 
+		    />
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="测试系统字体颜色 :...textColorSecondaryInverse"
+		    android:textColor="?android:attr/textColorSecondaryInverse" 
+		    />
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="测试系统横向分隔符  :"
+		    />
+		<View 
+		    android:layout_width="fill_parent" 
+      		android:layout_height="1dip" 
+      		android:background="?android:attr/listDivider" />
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="测试系统纵向分隔符  :"
+		    />
+		<View 
+		    android:layout_width="1dip" 
+		    android:layout_height="fill_parent" 
+		    android:background="?android:attr/listDivider" />
+		
+		<CheckBox 
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    style="?android:attr/starStyle"
+		    />
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="类似标题栏效果的TextView "
+		    style="?android:attr/listSeparatorTextViewStyle"
+		    />
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:text="其它有用的样式 :listPreferredItemHeight包括下边的距离"
+		   	android:layout_height="?android:attr/listPreferredItemHeight"
+		    />
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="其它有用的样式 :scrollbarSize"
+		   	android:paddingRight="?android:attr/scrollbarSize"
+		    />
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="其它有用的样式 :windowTitleBackgroundStyle"
+		   	style="?android:attr/windowTitleBackgroundStyle"
+		    />
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="其它有用的样式 :windowTitleStyle"
+		   	style="?android:attr/windowTitleStyle"
+		    />
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:text="其它有用的样式 :windowTitleSize"
+		   	android:layout_height="?android:attr/windowTitleSize"
+		    />
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content" 
+		    android:text="其它有用的样式 :windowBackground"
+		   	android:background="?android:attr/windowBackground"
+		    />
+		
+		
+		
+		
+		<EditText
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:hint="activity android:windowSoftInputMode='stateVisible|adjustResize\'"
+		    android:layout_marginBottom="45dp"
+		    >
+		</EditText>
+		<!-- 会跟布局一起被输入法顶上去。android:layout_marginBottom="45dp"是防止button遮住最后一个输入框。
+		<Button
+		    android:layout_alignParentBottom="true"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="always on top of inputSoftWare"
+	        />
+	         -->
+	</LinearLayout>
+	
+	</ScrollView>
+	<!-- 这个button在输入法上面，但不和上一个布局在一起。
+	 -->
+	<Button
+		    android:layout_alignParentBottom="true"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="always on top of inputSoftWare2"
+	        />
+</RelativeLayout>

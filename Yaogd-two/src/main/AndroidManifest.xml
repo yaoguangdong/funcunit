@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yaogd"
+    android:versionCode="1"
+    android:versionName="1.0" 
+    >
+    <!-- android:installLocation="auto",defalut:internalOnly -->
+    <!-- 即便应用可以保存到外部，但数据还在内部 -->
+    <!-- 为了只在安装过它的设备上运行，需要对其加密，不能随着SDcard的转移而仍可以使用 -->
+    <!-- 不支持安装到外部存储器的应用：
+    	1.服务2.Alarm服务，Unmount时服务被取消。
+    	3输入法引擎4.动态壁纸，Unmount时回复默认
+    	5.活动文件夹、app插件，Unmount时，从HOME界面上删除
+    	6....
+     -->
+     
+     
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="10" />
+	<uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    
+    
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" 
+        >
+        
+        <!-- 
+	       1. uses-library。。。放在application内，四大组件之前
+	       2. 单元测试的方法，需要声明为public void类型
+	       3. 按照JUnit3的规范要求，单元测试的方法要以test开头
+	       4. 单元测试的方法，需要声明向单元测试框架抛出异常
+         -->
+        <uses-library android:name="android.test.runner" />
+        
+        <activity
+            android:name="com.lefu.webview.fileUpload.UIWebMerchantReform"
+            android:label="@string/app_name"
+            android:configChanges="keyboardHidden|orientation" android:launchMode="singleTask" android:screenOrientation="portrait" >
+            
+        </activity>
+        
+        <activity 
+            android:name="com.lefu.webview.loadContact.ShowContactActivity"
+            android:label="@string/app_name" >
+            <!-- 加上下面这些InterFilter就能从网页启动应用了 -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="luxin.me"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="t.luxin.me"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="t.www.luxin.me"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.luxin.me"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="luxin" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="vnd.android.cursor.item/postal-address" />
+                <data android:mimeType="vnd.android.cursor.item/postal-address_v2" />
+            </intent-filter>
+            
+        </activity>
+        
+        <activity
+            android:name="com.yaogd.customView.BallPoolActivity"
+            android:label="@string/app_name" >
+            
+        </activity>
+        
+        <activity
+            android:name="com.yaogd.customView.MyTableActivity"
+            android:label="@string/app_name" >
+        </activity>
+        
+        <activity
+            android:name="com.lefu.webview.WebViewDialog"
+            android:label="@string/app_name" >
+            
+        </activity>
+        <activity
+            android:name="com.lefu.webview.WebViewLoadContact"
+            android:label="@string/app_name" >
+        </activity>
+        
+        <activity
+            android:name="com.lefu.webview.camera.CameraWebviewActivity"
+            android:label="@string/app_name" >
+            
+        </activity>
+        
+        <activity
+            android:name="com.lefu.camera.StartActivity"
+            android:label="@string/app_name" >
+            
+        </activity>
+        
+        <activity android:name="com.lefu.camera.CameraActivity" android:label="@string/app_name" />
+        
+        <activity
+            android:name="com.commonsware.cwac.camera.CWACActivity"
+            android:label="@string/app_name" >
+            
+        </activity>
+        <!-- 
+        <service android:name=".service.AppServiceUpdate"/>
+		<service android:name=".service.SendUpService" />
+		
+        <receiver android:name=".receiver.ReceiverAlarmBoot" />
+		<receiver android:name=".receiver.ReceiverBootStart">
+	　　		<intent-filter>
+	　　			<action android:name="android.intent.action.BOOT_COMPLETED" />
+			</intent-filter>
+	　　	</receiver>
+         -->
+        <activity
+            android:name="com.lefu.autocomplete.AutoCompleteAsync1"
+            android:label="@string/app_name" >
+        </activity>
+        
+        <activity
+            android:name="com.yaogd.shape.test.ShapeActiviity"
+            android:label="@string/app_name" >
+            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            
+        </activity>
+        
+        <activity android:label="@string/app_name" android:name="com.yaogd.useLocation.MainWithGetBestProviderActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.INFO"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:label="@string/app_name" android:name="com.yaogd.useLocation.MainWithGetLastKnownLocationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.INFO"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:label="@string/app_name" android:name="com.yaogd.useLocation.MainWithLocationListenerActivity">
+
+        </activity>
+
+        <activity android:label="@string/app_name" android:name="com.yaogd.useLocation.MainWithPendingIntentActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.INFO"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:label="@string/app_name" android:name="com.yaogd.pulldown.PullDownActivity">
+        </activity>
+
+    	<receiver android:name="com.yaogd.useLocation.LocationReceiver">
+		</receiver>
+		
+    </application>
+    
+    <instrumentation android:name="android.test.InstrumentationTestRunner"
+                     android:targetPackage="com.lefu"
+                     android:label="Tests for IShua ."/>
+
+</manifest>

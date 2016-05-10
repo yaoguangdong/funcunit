@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Webview capture </title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript">
+
+	//alert被WebChormeClient截获
+	function takePhoto() {
+		window.confirm("open_camera@fff");  
+	}
+	//android中调用js方法
+	function picCallBack(fileName,componentName){
+		alert(componentName);
+		document.getElementById("droid").innerHTML = "photopath: " + fileName;
+		document.getElementById("pic0").src = fileName;
+		$("#filePath").val(fileName);
+	}
+	function uploadData(){
+		LocalDevice.upload($("#merchantName").val(),$("#filePath").val());
+	}
+  </script>
+
+</head>
+<body>
+	<div>
+		<li>
+			<h3>JS <--> Java</h3>
+			<input type="button" onClick="takePhoto()" value=' 上		传   '></input><br/>
+			商户名称：
+			<input id='merchantName' type="text" value="" />
+			<input id='filePath' type="hidden" value="" />
+			<div id = "droid"></div>
+			<input type="button" onclick="uploadData()" value="提交" />
+			
+			<!-- 
+			<input type="button" onclick="javascript:window.top.location.reload()" value="Refresh" />
+			-->
+		</li>
+	</div>
+	<div>
+		<img alt="picture01" id="pic0" class="logo" src="miaomiao.jpg" />
+	</div>
+</body>
+</html>

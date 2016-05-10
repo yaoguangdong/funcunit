@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ygd="http://schemas.android.com/apk/res/com.yaogd"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/gray"
+    >
+
+    <com.yaogd.customView.WallpaperDrawable 
+        android:id="@+id/test_only_wallpaperDrawable"
+        android:layout_width="fill_parent"
+    	android:layout_height="1dp"
+        />
+    
+    <com.yaogd.customView.RollBanner
+        android:id="@+id/test_only_wallpaperDrawable2"
+        android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+        />
+    
+    <ImageView 
+        android:layout_width="fill_parent"
+    	android:layout_height="100dp"
+    	android:src="@drawable/miaomiao"
+    	android:scaleType="centerCrop"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:layout_weight="1"
+    	android:orientation="vertical" 
+    	android:gravity="center"
+    	>
+        
+        <com.yaogd.customView.BallPoolText
+	        android:id="@+id/b_p_text"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        ygd:bpTextColor="@color/white"
+	        ygd:bpTextSize="30sp" />
+    </LinearLayout>
+    
+	<LinearLayout
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:orientation="vertical" 
+    	android:layout_weight="1"
+    	android:gravity="center"
+    	>
+    	
+    	<com.yaogd.customView.BallPoolImage
+	        android:id="@+id/ball_p_img"
+	        android:layout_width="80dp"
+	        android:layout_height="40dp"
+	        ygd:bpTextColor="@color/white"
+	        ygd:bpDraftColor="#3399cc"
+	        ygd:bpBackGroundColor="#636f8e"
+	        />
+    	
+	</LinearLayout>
+    
+	<SeekBar 
+        android:id="@+id/seek_bar19"
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_margin="10dp"
+    	android:max="100"
+        />
+    
+</LinearLayout>

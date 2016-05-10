@@ -1,0 +1,4 @@
+include ':Yaogd-AutoImgBanner', ':Yaogd-ImageProcess', ':Yaogd-IPC', ':Yaogd-Lib', ':Yaogd-WebView-FullScreanVideo', ':Yaogd_web_unit'
+//include ':Yaogd-Native'
+//include ':Yaogd-one'
+//include ':Yaogd-two'

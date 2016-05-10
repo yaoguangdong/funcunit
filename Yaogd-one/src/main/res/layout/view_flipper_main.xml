@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ViewFlipper
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/viewFlipper1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" >
+        <include
+            android:id="@+id/secondlayout"
+            layout="@layout/view_pager1" >
+        </include>
+        <include
+            android:id="@+id/firstlayout"
+            layout="@layout/view_pager2" >
+        </include>
+        <include
+            android:id="@+id/firstlayout"
+            layout="@layout/view_pager3" >
+        </include>
+        <include
+            android:id="@+id/firstlayout"
+            layout="@layout/view_pager4" >
+        </include>
+    </ViewFlipper>
+
+</LinearLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent" 
+	> 
+	<com.lefu.camera.CameraPreview 
+		android:id="@+id/pre_view" 
+		android:layout_width="fill_parent" 
+        android:layout_height="fill_parent" /> 
+	<com.lefu.camera.CameraMask
+        android:id="@+id/mask_view" 
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent" 
+        android:background="@color/transparent" 
+        />
+	<ImageButton 
+	    android:id="@+id/take_pic_btn"
+	    android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:src="@drawable/camera_indicator_photo"
+        android:background="@drawable/camera_btn_style"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+	    />
+	
+ </RelativeLayout> 
+ 

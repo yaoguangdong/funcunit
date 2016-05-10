@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+xmlns:app="http://schemas.android.com/apk/res/cn.farcanton.activity"
+中的cn.farcanton.activity与AndroidManifest.xml中的package="cn.farcanton.activity"一致 
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/cn.farcanton"
+	android:id="@+id/flashlightscreen"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:keepScreenOn="true"
+    android:background="#FFFFFF"
+    >
+    
+    <cn.farcanton.customView.CustomBtnView 
+		android:id="@+id/custombtn"
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent" 
+		app:text="按钮" 
+		app:textSize="20sp"
+		app:secantColor="#ff45c4"
+		/>
+    
+    <cn.farcanton.customView.CustomLayout 
+        xmlns:customView="http://schemas.android.com/apk/res/cn.farcanton"
+        android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+		android:orientation="vertical"
+		android:background="@color/azure"
+		customView:baseColor="#c87777dd"
+		customView:frameColor="#50ff7777"
+        >
+        <TextView 
+            android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+            android:text="hello CustomLayout..."
+            android:textColor="@color/gold"
+            />
+        <TextView 
+            android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+            android:text="hi CustomLayout..."
+            android:textColor="@color/gold"
+            />
+    </cn.farcanton.customView.CustomLayout>
+    
+    <cn.farcanton.customView.DragTextView 
+        android:layout_width="wrap_content"
+		android:layout_height="wrap_content" 
+        android:text="DragTextView..."
+        android:textColor="@color/gold"
+        />
+    
+</LinearLayout>

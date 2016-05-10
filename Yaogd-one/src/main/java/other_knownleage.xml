@@ -1,0 +1,257 @@
+<!-- 其他的android小知识 -->
+<!-- 
+-----------------------------------------------------
+//下面的方法获取屏幕尺寸，是首选的
+//		DisplayMetrics dm = new DisplayMetrics();
+//		getWindowManager().getDefaultDisplay().getMetrics(dm);
+//		int widthPixels= dm.widthPixels;
+//		int heightPixels= dm.heightPixels;
+//		float density = dm.density;
+//		int screenWidth = widthPixels * density ;
+//		int screenHeight = heightPixels * density ;
+-----------------------------------------------------   
+混淆优化时不能去除Log的问题：
+要删除日志函数，可添加
+-assumenosideeffectsclass android.util.Log{ *; }
+但可能出现添加后还是会打印日志的问题。将：
+proguard.config=${sdk.dir}/tools/proguard/proguard-android.txt:proguard-project.txt
+替换为
+proguard.config=${sdk.dir}/tools/proguard/proguard-android-optimize.txt:proguard-project.txt
+proguard-android.txt中有-dontoptimize配置，而-assumenosideeffects属于优化操作，故未生效。
+-----------------------------------------------------      
+参考：30.彻底退出程序的探索
+	cn.farcanton.textView.TypeFaceActivity   
+finish()：结束当前Activity，不会立即释放内存。遵循android内存管理机制。
+exit()：结束当前组件如Activity，并立即释放当前Activity所占资源。
+killProcess()：结束当前组件如Activity，并立即释放当前Activity所占资源。
+restartPackage()或killBackgroundProcesses() > 2.1：结束整个App，包括service、notification、alarms等其它Activity组件。
+-----------------------------------------------------
+NinePatch图片对png的要求是：必须包括一个像素的空白边界，用来绘制伸缩的黑边。
+-----------------------------------------------------
+资源文件的命名规则：drawable-en-rUS-port-160dpi-finger-keysexposed-qwerty-dpad-1280x720
+rUS：地区
+port:屏幕方向：port(竖屏)、land(横屏)、square(方形屏幕)
+160dpi:像素密度
+finger：触摸屏类型：notouch(非触摸)、stylus(手写笔)、finger(手指触摸)
+keysexposed:虚拟键盘:keysexposed(可用)、keyshidden(不可用)
+qwerty:文本输入模式：nokeys(无键盘)、qwerty(标准键盘)、12key(12键)
+dpad:无触摸的导航模式：nonav(无键盘)、dpad(pad键)、trackball(轨迹球)、wheel(滚轮)
+1280x720：分辨率类型
+
+-----------------------------------------------------
+ activity标签中有一个属性为android:taskAffinity=“String”。
+
+如果不设置此属性，默认一个应用程序只有一个栈，这个栈以应用包命为单位。
+-----------------------------------------------------
+每个apk安装之后只能访问/data/data/自己包名/下面的私有空间
+想通过 File 类获取 assets 文件夹的数据是不现实的，因为那些文件还都在 apk 压缩包里面
+而至于 file:///android_asset/xx 的说法，之所以有
+那是为了方便自己的应用调用 webview 来装载页面，并非统一的 file:// 协议
+所以，想为了节省手机内存空间，在apk安装后删除assets中的数据文件，是做不到的。
+
+-----------------------------------------------------
+Thread.sleep和SystemClock.sleep的区别
+
+Thread.sleep时可能会出现InterruptedException异常，而SystemClock.sleep方法则不会，
+在 SDK上有这样的描述，它将会忽略中断异常。SystemClock.sleep(millis) is a utility 
+function very similar to Thread.sleep(millis), but it ignores InterruptedException. 
+这里Android开发网要提醒的是下面这句 Use this function for delays if you do not use Thread.interrupt(),
+ as it will preserve the interrupted state of the thread. 
+
+-----------------------------------------------------
+ onWindowFocusChanged重要作用
+
+Activity生命周期中，onStart, onResume, onCreate都不是真正visible的时间点，真正的visible时间点是onWindowFocusChanged()函数被执行时。
+译注：从onWindowFocusChanged被执行起，用户可以与应用进行交互了，而这之前，对用户的操作需要做一点限制。
+
+比如我们在做OTT项目时候,我们就是在这onWindowFocusChanged来获取主按键的具体位置和宽高的,而在其他标准生命周期的接口中调用都是获取不到的，比如在onResume，onStart中都获取不到信息。
+
+这个onWindowFocusChanged指的是这个Activity得到或者失去焦点的时候 就会call。。
+也就是说 如果你想要做一个Activity一加载完毕，就触发什么的话 完全可以用这个！！！
+
+使用一个view的getWidth() getHeight() 方法来获取该view的宽和高，返回的值却为0。
+如果这个view的长宽很确定不为0的话，那很可能是你过早的调用这些方法，也就是说在这个view被加入到rootview之前你就调用了这些方法，返回的值自然为0.
+解决该问题的方法有很多，主要就是延后调用这些方法。可以试着在onWindowFocusChanged()里面调用这些方法,验证时可以获取到View的宽高的。
+
+
+----------------------------------------------
+但ViewStub也不是万能的，下面总结下ViewStub能做的事儿和什么时候该用ViewStub，什么时候该用可见性的控制。
+
+     首先来说说ViewStub的一些特点：
+
+         1. ViewStub只能Inflate一次，之后ViewStub对象会被置为空。按句话说，某个被ViewStub指定的布局被Inflate后，就不会够再通过ViewStub来控制它了。
+
+         2. ViewStub只能用来Inflate一个布局文件，而不是某个具体的View，当然也可以把View写在某个布局文件中。
+
+     基于以上的特点，那么可以考虑使用ViewStub的情况有：
+
+         1. 在程序的运行期间，某个布局在Inflate后，就不会有变化，除非重新启动。
+
+              因为ViewStub只能Inflate一次，之后会被置空，所以无法指望后面接着使用ViewStub来控制布局。所以当需要在运行时不止一次的显示和隐藏某个布局，那么ViewStub是做不到的。这时就只能使用View的可见性来控制了。
+
+         2. 想要控制显示与隐藏的是一个布局文件，而非某个View。
+
+              因为设置给ViewStub的只能是某个布局文件的Id，所以无法让它来控制某个View。
+
+     所以，如果想要控制某个View(如Button或TextView)的显示与隐藏，或者想要在运行时不断的显示与隐藏某个布局或View，只能使用View的可见性来控制。
+
+---------------------------------------------
+如果两个文本编辑元素每一个的layout_weight值都设置为1，则两者平分
+    在父视图布局剩余的宽度(因为我们声明这两者的重要度相等)。如果两个 
+   文本编辑元素其中第一个的layout_weight值设置为1，而第二个的设置为2，
+   则剩余空间的三分之二分给第一个，三分之一分给第二个(数值越小，重要度越高)。
+
+-----------------------------------------------------------
+    /** 
+     * 应用程序运行命令获取 Root权限，设备必须已破解(获得ROOT权限) 
+     *  
+     * @return 应用程序是/否获取Root权限 
+     */  
+    public static boolean upgradeRootPermission(String pkgCodePath) {  
+        Process process = null;  
+        DataOutputStream os = null;  
+        try {  
+            String cmd="chmod 777 " + pkgCodePath;  
+            process = Runtime.getRuntime().exec("su"); //切换到root帐号  
+            os = new DataOutputStream(process.getOutputStream());  
+            os.writeBytes(cmd + "\n");  
+            os.writeBytes("exit\n");  
+            os.flush();  
+            process.waitFor();  
+        } catch (Exception e) {  
+            return false;  
+        } finally {  
+            try {  
+                if (os != null) {  
+                    os.close();  
+                }  
+                process.destroy();  
+            } catch (Exception e) {  
+            }  
+        }  
+        return true;  
+    }  
+    //判断机器Android是否已经root，即是否获取root权限
+  protected static boolean haveRoot()
+  {
+
+    int i = execRootCmdSilent("echo test"); //通过执行测试命令来检测
+    if (i != -1)  return true;
+    retrun false;
+  }
+    调用代码：
+        @Override  
+    public void onCreate(Bundle savedInstanceState) {  
+        super.onCreate(savedInstanceState);  
+        setContentView(R.layout.main);  
+        //当前应用的代码执行目录  
+        upgradeRootPermission(getPackageCodePath());  
+    }  
+    --------------------------------------------------
+提问者的大意如下：
+
+    在主UI线程中，使用handler.post(Runnable r)方法是否会创建一个新的线程？
+
+答案：
+
+    不会，这个Runnable还是在主UI线程中。
+
+
+---------------------------------------------------------
+android开发中可以使用res/raw和assets文件夹来存放不需要系统编译成二进制的文件，例如字体文件等，
+这两个文件夹有很多相同的地方，例如都可以把文件夹下的东西原封不动的拷贝到应用程序目录下，但是两个文件夹也有一些不同的地方，
+首先就是访问方式不同，res/raw文件夹不能有子文件夹，文件夹下的资源可以使用getResources().openRawResource（R.raw.id）
+的方式获取到，而assets文件夹可以自己创建文件夹，并且文件夹下的东西不会被R.java文件索引到，必须使用AssetsManager类进行访问。
+
+另外，一些低版本的android系统对res/raw和assets文件夹资源大小有限制（<1M，其实res/raw和assets文件夹下的文件在
+android系统底层处理机制是一样的），android2.2好像放宽（或者取消）了这个限制（至少可以存放>10M，具体没有测试。）
+
+assets中的文件不会被编译成二进制文件，assets和raw中的图片不会被压缩。其他的文件夹下会被编译成二进制并且被压缩。
+assets不支持Unicode编码的文件名（比如中文）
+assets目录是只读的
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ -->

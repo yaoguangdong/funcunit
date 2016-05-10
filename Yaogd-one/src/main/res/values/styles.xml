@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Transparent">
+        <item name="android:windowBackground">@color/transparent_background</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@+android:style/Animation.Translucent</item>
+    </style>
+	
+    <style name="btnStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/btn_change</item>
+        <item name="android:text">引用自定义样式</item>
+    </style>
+    <!-- popwidnow 显示动画 可选-->
+    <style name="PopupAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/menu_up</item>
+    </style>
+
+    <!-- popwidnow 显示消失动画-->
+ 	<style name="mypopwindow_anim_style">
+  		<item name="android:windowEnterAnimation">@anim/popshow_anim</item>        <!-- 指定显示的动画xml  -->
+   		<item name="android:windowExitAnimation">@anim/pophidden_anim</item>       <!-- 指定消失的动画xml  -->
+ 	</style>
+ 	
+    <!-- 窗口样式的activity（WindowLike.java），继承android系统的对话框样式 android:style/Theme.Dialog -->
+    <style name="Theme.FloatActivity" parent="android:style/Theme.Dialog">
+        <!-- float_box为我们定义的窗口背景 -->
+     	<item name="android:windowBackground">@drawable/float_box</item>
+    </style>
+
+</resources>

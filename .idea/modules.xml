@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Yaogd-AutoImgBanner/app.iml" filepath="$PROJECT_DIR$/Yaogd-AutoImgBanner/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Yaogd-IPC/Yaogd-IPC.iml" filepath="$PROJECT_DIR$/Yaogd-IPC/Yaogd-IPC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Yaogd-ImageProcess/yaogd-imageprocess.iml" filepath="$PROJECT_DIR$/Yaogd-ImageProcess/yaogd-imageprocess.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Yaogd-Lib/Yaogd-Lib.iml" filepath="$PROJECT_DIR$/Yaogd-Lib/Yaogd-Lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Yaogd-WebView-FullScreanVideo/Yaogd-WebView-FullScreanVideo.iml" filepath="$PROJECT_DIR$/Yaogd-WebView-FullScreanVideo/Yaogd-WebView-FullScreanVideo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Yaogd_web_unit/Yaogd_web_unit.iml" filepath="$PROJECT_DIR$/Yaogd_web_unit/Yaogd_web_unit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/funcunit.iml" filepath="$PROJECT_DIR$/funcunit.iml" />
+    </modules>
+  </component>
+</project>

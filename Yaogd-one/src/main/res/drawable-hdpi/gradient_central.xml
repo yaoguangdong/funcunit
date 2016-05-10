@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 背景色渐变，在自定义顶部工具栏和地步工具栏一起测试当angle=0时，渐变色是从左向右。 然后逆时针方向转，当angle=45时为从左下到右上，当angle=90时为从下往上。	-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <gradient   
+	    android:startColor="#666666"  
+	    android:centerColor="#FFFFFF"
+	    android:endColor="#666666"  
+	    android:angle="0"/>  
+    <corners android:radius="5dp"/>
+</shape>

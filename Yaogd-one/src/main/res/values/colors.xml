@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gold" >#34dd99</color>
+    <color name="azure" >#99aa22</color>
+    <color name="blank" >#FFFFFF</color>
+    <color name="transparent_background">#80000000</color>
+    
+    <color name="rbm_menu_background">#303030</color>
+    <color name="rbm_item_text_color">#ffffff</color>
+    
+</resources>

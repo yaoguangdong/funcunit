@@ -1,0 +1,215 @@
+<!-- 
+关于ViewPager、ViewFilpper、ViewFlow三种实现水平向滑动方式的比较
+实现简介
+ViewPager
+ViewPager类提供了多界面切换的新效果。新效果有如下特征：
+[1] 当前显示一组界面中的其中一个界面。
+[2] 当用户通过左右滑动界面时，当前的屏幕显示当前界面和下一个界面的一部分。
+[3] 滑动结束后，界面自动跳转到当前选择的界面中
+
+ViewPager来源于google 的补充组件android-support-v4.jar，位置在androidSDK文件夹
+android-sdks\extras\android\support\ 下 
+将android-support-v4.jar 引用到项目中
+注：该包需要在Android SDK Manager中额外下载Extras下的Android Support package，
+或直接下载该jar包到项目中引用
+
+引入后可直接当作控件在项目中使用。
+配置文件页面文件
+<android.support.v4.view.ViewPager
+         android:id="@+id/viewPager1"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+         android:layout_centerVertical="true"  />
+
+初始化控件
+viewPager1 = (ViewPager) findViewById(R.id.viewPager1); 
+        viewPager1.setAdapter(new PageAdapter(new ArrayList<View>()));
+
+
+配置适配器的页面变化事件
+viewPager1
+       .setOnPageChangeListener(new OnPageChangeListener() {
+            //页面选择
+@Override
+           public void onPageSelected(int position) {
+              topText.setText(String.valueOf(position+1)+"/"+String.valueOf(lists.length));
+           }
+ 
+           @Override
+           public void onPageScrollStateChanged(int state) {
+           }
+ 
+           @Override
+           public void onPageScrolled(int position ,
+                  float positionOffset, int positionOffsetPixels) {
+           }
+       });
+ViewPager使用的适配器基于PagerAdapter基类
+主要实现一下四个方法
+//获取当前窗体界面数
+public int getCount()
+//初始化position位置的界面
+public Object instantiateItem(View collection, int position)	
+//销毁position位置的界面
+public void destroyItem(View collection, int position, Object view)
+// 判断是否由对象生成界面
+public boolean isViewFromObject(View arg0, Object arg1)
+
+ViewPager控件的使用中，可以将View装如ArrayList中作为数据载体，每一项（即每一页）
+为一个View显示，可以适应大量页面或者变化的页面长度的显示
+
+
+
+
+ViewFilpper
+Viewfilpper控件主要用于在同一个Activity内屏幕见的切换，最长见的情况就是在一个FrameLayout内有多个页面，比如一个系统设置页面；一个个性化设置页面。
+
+ViewFilpper控件是系统自带控件之一，主要是为两个页面间的切换设置动画效果。ViewFilpper继承自FrameLayout下的ViewAnimator，
+
+android.widget.ViewAnimator类继承至FrameLayout，ViewAnimator类的作用是为FrameLayout里面的View切换提供动画效果。该类有如下几个和动画相关的函数： 
+setInAnimation：设置View进入屏幕时候使用的动画，该函数有两个版本，一个接受单个参数，类型为android.view.animation.Animation；一个接受两个参数，类型为Context和int，分别为Context对象和定义Animation的resourceID。
+setOutAnimation: 设置View退出屏幕时候使用的动画，参数setInAnimation函数一样。 
+showNext： 调用该函数来显示FrameLayout里面的下一个View。 
+showPrevious： 调用该函数来显示FrameLayout里面的上一个View。 
+ 
+一般不直接使用ViewAnimator而是使用它的两个子类ViewFlipper和ViewSwitcher。ViewFlipper可以用来指定FrameLayout内多个View之间的切换效果，可以一次指定也可以每次切换的时候都指定单独的效果。该类额外提供了如下几个函数： 
+ 
+isFlipping： 用来判断View切换是否正在进行 
+setFilpInterval：设置View之间切换的时间间隔 
+startFlipping：使用上面设置的时间间隔来开始切换所有的View，切换会循环进行 
+stopFlipping: 停止View切换 
+
+ViewFilpper的使用方法：
+配置页面文件
+<ViewFlipper
+        android:id="@+id/flipper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/CockpitLayout" >
+        <include
+            android:id="@+id/secondlayout"
+            layout="@layout/second" >
+        </include>
+        <include
+            android:id="@+id/firstlayout"
+            layout="@layout/first" >
+        </include>
+</ViewFlipper>
+配置好页面文件后便可在代码中对ViewFilpper进行操作和设置切换动画
+ViewFlow
+android-viewflow 是 Android 平台上一个视图切换的效果库。
+ViewFlow 相当于 Android UI 部件提供水平滚动的 ViewGroup，使用 Adapter 进行条目绑定。文档上说，当你需要在一系列不确定数目的view中滑动时，可以考虑使用ViewFlow。如果你的view数目确定，你应该使用Fragments 或兼容库里的ViewPager 。
+
+1、使用ViewFlow
+怎么使用呢？首先在你的layout文件中加入：
+<org.taptwo.android.widget.ViewFlow
+android:id="@+id/viewflow"
+app:sidebuffer="5"
+/>
+其中app:sidebuffer属性是ViewFlow组件自定义的，使用这些属性时，需要增加如下的xml的命名空间：
+xmlns:app="http://schemas.android.com/apk/res/your.application.package.here"
+然后在你的Activity里面添加如下代码用于使用ViewFlow：
+ViewFlow viewFlow = (ViewFlow) findViewById(R.id.viewflow);
+viewFlow.setAdapter(myAdapter);
+//设置初始view的位置
+//viewFlow.setAdapter(myAdapter, 8);
+//监听view切换事件，简单的需求可不监听
+viewFlow.setOnViewSwitchListener(new ViewSwitchListener() {
+    public void onSwitched(View v, int position) {
+    / / Your code here
+    }
+});
+当然，你也可以使用该库中的FlowIndicator为你在多个view中切换时提供一个指示器，目前该库已经实现了两种指示器：一种是圆点指示器FlowIndicator；另一种是标题指示器TitleFlowIndicator。
+1、使用圆点指示器
+圆点指示器可以这样使用：
+先在layout中这样定义
+<org.taptwo.android.widget.CircleFlowIndicator
+android:padding="10dip" android:layout_height="wrap_content"
+android:layout_width="wrap_content" android:id="@+id/viewflowindic"
+android:background="#00000000"
+/>
+然后在activity中调用它
+CircleFlowIndicator indic = (CircleFlowIndicator)
+                     findViewById(R.id.viewflowindic);
+viewFlow.setFlowIndicator(indic);
+圆点指示器还支持activeColor、inactiveColor、activeType（填充或描边）、inactiveType(填充或描边)、fadeOut(设置圆点自动隐藏的秒数，若为0则不会自动隐藏)、radius(圆点的半径)等。
+2、使用标题指示器
+标题指示器也是先layout里定义：
+<org.taptwo.android.widget.TitleFlowIndicator
+android:id="@+id/viewflowindic"
+        android:layout_height="wrap_content"
+android:layout_width="fill_parent"
+app:footerLineHeight="2dp"
+app:footerTriangleHeight="10dp"
+        app:textColor="#FFFFFFFF" app:selectedColor="#FFFFC445"
+app:footerColor="#FFFFC445" app:titlePadding="10dp"
+        app:textSize="11dp" app:selectedSize="12dp"
+android:layout_marginTop="10dip"
+app:clipPadding="5dp" />
+然后在activity中调用它：
+TitleFlowIndicator indicator = (TitleFlowIndicator)
+                          findViewById(R.id.viewflowindic);
+indicator.setTitleProvider(myTitleProvider);
+viewFlow.setFlowIndicator(indicator);
+以上就是ViewFlow库提供三大组件及其用法（来自其文档），使用时需要下载到其代码并放在你的项目中的某个包内，当然你也可以把该组件库打包成jar调用。
+
+比较
+根据以上对三种实现的使用描述，可以看出，ViewPager与ViewFlow都能够使用适配器进行大量数据的适配。并且ViewFlow也带有原点和标题的位置提示，二者比较相像。ViewFilpper使用时主要是在有限的少数页面切换中比较合适，并且能够自定义每一个切换动画，用于一个应用间的画面切换比较合适，类似于ActivityGroup。
+ViewFlow由于提供源码，所以在扩展性上更强，可根据需要自行定制，比如加入循环播放等。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ -->

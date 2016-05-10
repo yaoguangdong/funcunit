@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory android:key="ordingSpeech" android:title="系统设置" >
+        <EditTextPreference android:key="startWelcome" android:title="开机问候语" android:summary="请输入开机问候语"/>
+        <CheckBoxPreference android:key="silentMode" android:title="静音模式" android:summary="除了媒体和闹钟外静音"/>
+        
+		<ListPreference 
+           android:dialogTitle="震动" 
+           android:key="vibrate" 
+           android:title="震动" 
+           android:summary="仅在静音模式下来电震动" 
+           android:entries="@array/vibaratelist" 
+           android:entryValues="@array/vibaratevalue"/>
+        
+    </PreferenceCategory>
+	
+    <PreferenceCategory android:title="来电">
+        <RingtonePreference android:key="ringtone" android:title="手机铃声"/>
+    </PreferenceCategory>
+    <Preference android:title="其它"/>    
+    <PreferenceScreen android:title="设置Wifi">
+        <intent android:action="android.settings.WIFI_SETTINGS"/>
+        <EditTextPreference android:title="请输入Wifi地址" android:key="inputwifi"/>
+    </PreferenceScreen>
+        
+</PreferenceScreen>

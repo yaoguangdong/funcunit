@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+----------这里存放一些奇特有趣的代码-----------
+1.定义dialog风格
+		AlertDialog.Builder localBuilder = new AlertDialog.Builder(cxt);
+		localBuilder.setTitle("忘记账号或密码")
+			.setMessage("账号或者密码忘记了怎么办？，别急，可以试着找回")
+			.setPositiveButton("找回账号密码", null)
+			.setNegativeButton("取消", null);
+		AlertDialog localAlertDialog = localBuilder.create();
+		localAlertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG);
+		localAlertDialog.getWindow().setType(2003);
+		localAlertDialog.setCanceledOnTouchOutside(false);
+		//设置对话框后面的窗体是否能够获得焦点，也就是说能不能响应用户操作触发的事件
+		//对于防止重复提交的功能特别有用，不用重写一个蒙版屏蔽用户点击
+		localAlertDialog.setInverseBackgroundForced(true);
+		localAlertDialog.show();
+
+2.金额格式化
+NumberFormat nf = NumberFormat.getCurrencyInstance();
+String ss = nf.format(0.01) ;//ss:￥1.00
+	保留两位小数String.format("%.2f", Float.parseFloat(amount)) 
+	
+3.<Button android:onClick="btn2ClickHandler"，这样在Acitiviy中就能调用响应的函数处理。
+
+4.获取屏幕上控件的尺寸：
+//获取输入框的高度
+		ViewTreeObserver vto2 = usernameEt.getViewTreeObserver();    
+	    vto2.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {  
+	        @Override    
+	        public void onGlobalLayout() {  
+	        	usernameEt.getViewTreeObserver().removeGlobalOnLayoutListener(this);    
+	        	editTextHeight = usernameEt.getHeight();  
+	        }    
+	    });   
+5.取代StringBuffer的方式：
+	String postData = String.format("log=%s&pwd=%s", "xx", "yy");
+   	mWebView.postUrl("http://xxx", postData.getBytes());
+   	
+6.分享
+	Intent share = new Intent(Intent.ACTION_SEND);
+    share.setType("text/plain");
+    share.putExtra(Intent.EXTRA_TEXT, mWebView.getUrl());
+    startActivity(Intent.createChooser(share, "分享一下"));
+
+	//LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	//inflater = LayoutInflater.from(getContext());
+7.动态设置链接
+	Linkify.addLinks(tvEmail, Linkify.ALL);
+	清空EditText：replyText.clear();
+8.打开键盘，关闭键盘
+
+	protected void showKeyboard(Activity activity, View view){
+    	InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null)
+            inputMethodManager.showSoftInput(view, 0);
+    }
+    
+    protected void dismissKeyboard(Activity activity, View view){
+        InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0x0);
+    }
+9.控制ScrollView的position
+mScrollView.scrollTo(0, mReplyList.getBottom());
+
+10.Context.this和getApplicationContext()和MenuScreen.this都是一样的。
+
+11.string.xml中的格式化
+%n$ms：代表输出的是字符串，n代表是第几个参数，设置m的值可以在输出之前放置空格 
+%n$md：代表输出的是整数，n代表是第几个参数，设置m的值可以在输出之前放置空格，也可以设为0m,在输出之前放置m个0 
+%n$mf：代表输出的是浮点数，n代表是第几个参数，设置m的值可以控制小数位数，如m=2.2时，输出格式为00.00 
+
+11.android Market应用只能被预装在与Google签订协议的制造商的设备上，一般开源的Android上不包含AndroidMarket   
+
+12.按照文件的最后修改时间排序
+List<String> directoryEntries = new ArrayList<String>() ;
+	    
+	    File directory = new File("/dd");
+	    File [] files = directory.listFiles() ;
+	    Arrays.sort(files,new Comparator<File>(){
+
+			@Override
+			public int compare(File lhs, File rhs) {
+				return -Long.valueOf(lhs.lastModified()).compareTo(rhs.lastModified()) ;
+			}
+	    	
+	    }) ;
+	    for(File f : files){
+	    	directoryEntries.add(f.getPath()) ;
+	    }
+
+13.检测网络变化：
+private BroadcastReceiver mr = new BroadcastReceiver(){
+public void onReceive(Context c, Intent i){
+ Bundle b = i.getIntent();
+ NetworkInfo ni = (NetworkInfo)b.get(ConnetivityManager.EXTRA_NETWORK_INFO);
+ if(ni.isConnected){
+ .... 
+注册：regitserReceiver(mr,new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)) ;
+ 从连接管理器中可以获取的信息：
+ EXTRA_EXTRA_INFO 包含关于网络状态的额外信息
+ EXTRA_IS_FAILOVER 如果当前连接是故障切换网络的结果，则返回布尔值
+ EXTRA_NETWORK_INFO 返回NetworkInfo对象
+ EXTRA_NO_CONNECTIVITY 如果没有网络连接，返回布尔值
+ EXTRA_OTHER_NETWORK_INFO 返回一个可以故障切换网络的NetworkInfo对象
+ EXTRA_REASON 返回一个描述连接失败原因的字符串
+
+14.绿色的字体挺好看的:#009900
+15.自定义标题栏，要比noTitleBar，然后引用一个header来的方便
+	getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title);
+
+16.android.text.format包中文件大小格式化
+
+	formatFileSize(context, number) 比如:23K、1.2M
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ -->

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
+    android:addStatesFromChildren="true" android:id="@+id/gamehall">
+	<LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:id="@+id/quanbu"
+		android:paddingRight="30dip" android:paddingLeft="30dip" android:paddingBottom="10dip" android:paddingTop="10dip"
+		 android:gravity="center_horizontal|left" >
+		<RelativeLayout 
+			android:id="@+id/gamehall" 
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent">
+			<com.mxt.MyHorizontalScrollView  android:layout_width="fill_parent" android:layout_height="fill_parent"
+					 android:scrollbarAlwaysDrawVerticalTrack="false"
+					android:scrollbars="none" android:id="@+id/horizontalview">	
+				<LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+						android:id="@+id/layout" android:gravity="center_vertical"
+						android:paddingLeft="8dip" android:paddingRight="8dip" android:orientation="vertical">
+							<LinearLayout android:layout_width="fill_parent"
+		                         android:layout_gravity="center_vertical" android:layout_height="wrap_content"
+		                         android:orientation="horizontal" android:layout_marginBottom="1dip"
+		                         android:id="@+id/layout1" android:scrollbars="horizontal">
+	                        </LinearLayout>
+	                        <LinearLayout android:layout_width="fill_parent"
+			                     android:layout_gravity="center_vertical" android:layout_height="wrap_content"
+			                     android:orientation="horizontal" android:layout_marginTop="2dip"
+			                     android:id="@+id/layout2" android:scrollbars="horizontal">
+	                         </LinearLayout>
+				</LinearLayout>	
+			</com.mxt.MyHorizontalScrollView>
+			
+		</RelativeLayout>
+	</LinearLayout>
+	<ImageButton android:layout_marginLeft="10dip"
+							android:visibility="gone" android:layout_centerVertical="true"
+							android:layout_alignParentLeft="true" android:id="@+id/left"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:background="@null" android:layout_gravity="left|center_vertical"
+							android:src="@drawable/gh_left_4" />
+	<ImageButton android:layout_marginRight="10dip"
+							android:layout_centerVertical="true"
+							android:layout_alignParentRight="true" android:id="@+id/right"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:background="@null" android:layout_gravity="right|center_vertical"
+							android:src="@drawable/gh_right_4" />
+</RelativeLayout>

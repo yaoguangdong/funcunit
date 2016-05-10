@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+    <string name="app_name">东方红2</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_rect_photo">RectPhoto</string>
+    <string name="double_click_remove">试一试双击屏幕或者拖动选框</string>
+    
+</resources>

@@ -1,0 +1,16 @@
+serverPT()
+{
+ping='ping -c 1 $1'
+if [ "X'${ping} | grep "alive"'" != "X" ];then
+        echo ping $1 ok
+        telnet='telnet $1 $2'
+        if [ "X'${telnet} | grep "Connected"'" != "X" ];then
+                echo telnet $1 $2 ok
+        else
+                echo telnet $1 $2 failed
+        fi
+else
+        echo ping $1 failed
+fi
+}
+serverPT $1 $2

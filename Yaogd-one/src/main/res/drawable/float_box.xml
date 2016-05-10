@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- 设定圆角,radius是4个角统一的弧度半径 -->
+	<corners android:radius="3dp" />
+<!-- padding是填充域，这里不是设置shape的填充域，而是设置里面content的填充域.-->
+	<padding android:left="10dp" android:top="10dp" android:right="10dp"
+		android:bottom="10dp" />
+<!-- solid是颜色，填充shape域的颜色-->
+	<solid android:color="#ffffff" />
+<!-- stroke是画笔，类似于paint，这里设置线粗和颜色 -->
+	<stroke android:width="3dp" android:color="#000000" />
+
+</shape>

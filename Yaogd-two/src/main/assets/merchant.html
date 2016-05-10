@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8" />
+<title>混合app测试</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="initial-scale=1.5, minimum-scale=1.5, maximum-scale=1.5, user-scalable=no">
+<script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+</head>
+
+<body>
+
+	测试ajax：<br>
+	<button id="btn01">测试ajax</button>
+	<div id="content"></div>
+	<br><hr>
+	测试上传图片：<br>
+	<form action="uploadfile.php" method="post" enctype="multipart/form-data">
+	<label for="file">Filename:</label>
+	<input type="file" name="file" id="file" /> 
+	<br />
+	<input type="submit" name="submit" value="Submit" />
+	</form>
+	<input type="button" name="" value="获取本地图片" id="getlocalImg">
+	<br><hr>
+	<input type="text" name="" value="" id="cardId">
+	<input type="button" name="" value="拍" id="getPhoto">
+	<br><hr>
+	<input type="button" name="" value="测试是ios还是安卓" id="iosAndroid">
+	<div class="userAgent"></div>
+	<br><hr>
+	<form action="uploadTxt.php" method="get" accept-charset="utf-8">
+		商户名称：<input type="text" id="merchantName" name="param" />
+		<input type="button" onclick="uploadData()" value="提交" />
+		<input type="submit" value="提交2" />
+	</form>
+	<br><hr>
+	发送json给APP
+	<input type="button" name="" value="发送数据给iosApp" id="sendBtn">
+	<br><hr>
+	<img src="" alt="" id="localImage" width="100">
+
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+  	$("#btn01").click(function(){
+  		$("#content").load("success.txt");
+  	});
+  	$("#getlocalImg").click(function(){
+  		var value01 = "123.jpg";
+  		setLocalImage(value01);
+  	});
+  	$("#getPhoto").click(function(){
+  		var value01 = "12345678";
+  		window.confirm("open_camera"); 
+  		setTxt(value01);
+  	});
+  	$("#iosAndroid").click(function(){
+  		iosAndroid();
+  	});
+  	$("#sendBtn").click(function(){
+  		window.location.href="objc:sendJson";
+  		sendJson();
+  	});
+  	
+  });
+
+function getPhoto(value1){
+	$("#cardId").val(value1);
+};
+function setTxt(value1){
+	$("#cardId").val(value1);
+};
+function iosAndroid(){
+	var browser = navigator.userAgent;
+	$(".userAgent").html(browser);
+
+	if (browser.indexOf('iPhone') > -1 ||browser.indexOf('ipad') > -1 ||browser.indexOf('ipod') > -1) {
+		alert("你的系统是ios");
+	};
+	if (browser.indexOf('Android') > -1) {
+		alert("你的系统是android");
+	};
+};
+function setLocalImage(url) {
+	alert(url);
+	$("#localImage").attr("src",url);
+};
+//-------------
+	//android中调用的js方法
+	function showPhoto(fileName){
+		alert(fileName);
+		document.getElementById("localImage").src = fileName;
+	}
+	function uploadData(){
+		LocalDevice.upload($("#merchantName").val(),$("#localImage").attr("src"));
+	}
+//--------------
+function sendJson(){
+	//window.location.href='[{ "name":"陈驰" , "age":"24" }]';
+	return '{ "name":"陈驰" , "age":"24" }';
+}
+
+</script>
+</body>
+</html>

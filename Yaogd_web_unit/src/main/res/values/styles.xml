@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   
+	<!-- 按钮 -->
+	<style name="btn_style" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:gravity">center</item>
+       	<item name="android:padding">10dp</item>
+       	<item name="android:textSize">18sp</item>
+    </style>
+    
+	<!-- 输入框 -->
+	<style name="et_style" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">@drawable/edit_input_style</item>
+        <item name="android:gravity">left</item>
+       	<item name="android:padding">10dp</item>
+       	<item name="android:textSize">18sp</item>
+       	<item name="android:textColor">@color/black_text</item>
+       	<item name="android:singleLine">true</item>
+    </style>
+   
+	<!-- 列表 -->
+	<style name="widget_listview_style">
+        <item name="android:layout_width">fill_parent</item>
+   		<item name="android:layout_height">wrap_content</item>
+       	<item name="android:layout_weight">1</item>
+       	<item name="android:divider">@color/full_transparent</item>
+       	<item name="android:dividerHeight">1.0dip</item>
+       	<item name="android:fadingEdge">none</item>
+       	<item name="android:scrollingCache">false</item>
+       	<item name="android:background">@color/gray_bg</item>
+       	<item name="android:scrollbars">none</item>
+    </style>
+    
+	<!-- 标题 -->
+	<style name="text_title_style">
+        <item name="android:layout_width">wrap_content</item>
+   		<item name="android:layout_height">wrap_content</item>
+       	<item name="android:textSize">25sp</item>
+       	<item name="android:textColor">@color/black_text</item>
+    </style>
+    
+	<!-- 列表项 -->
+	<style name="text_item_style">
+        <item name="android:layout_width">wrap_content</item>
+   		<item name="android:layout_height">wrap_content</item>
+       	<item name="android:textSize">15sp</item>
+       	<item name="android:textColor">@color/gray_text</item>
+    </style>
+    
+	<!-- 窗口半透明 -->
+	<style name="GrayMask" parent="android:style/Theme.Translucent">
+     	<item name="android:windowBackground">@color/half_transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+    
+</resources>

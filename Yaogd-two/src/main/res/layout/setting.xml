@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+	<LinearLayout
+		android:id="@+id/layInstallation" android:layout_width="fill_parent"
+		android:orientation="horizontal" android:layout_height="wrap_content"
+		android:paddingLeft="5dip" android:layout_alignTop="@+id/imgFromBottom"
+		android:layout_alignRight="@+id/imgFromBottom"
+		android:layout_alignLeft="@+id/imgFromBottom"
+		android:layout_marginTop="10dip" android:layout_marginRight="5dip">
+
+		<Button android:text="Install" android:id="@+id/download001"
+			android:textStyle="bold" android:gravity="center"
+			android:layout_height="50dip" android:layout_width="90dip"
+			android:textSize="12sp"></Button>
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:orientation="vertical"
+			android:paddingLeft="10dip">
+			<ProgressBar android:id="@+id/progress_bar"
+				android:fadingEdge="horizontal" android:layout_height="25dp"
+				android:indeterminateOnly="false" android:progressDrawable="@android:drawable/progress_horizontal"
+				android:indeterminateDrawable="@android:drawable/progress_indeterminate_horizontal"
+				android:minHeight="20dip" android:maxHeight="30dip"
+				android:layout_width="fill_parent"></ProgressBar>
+			<TextView android:text="0%" android:id="@+id/progressText"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_weight="1" android:textSize="14sp"
+				android:layout_gravity="center" android:layout_marginBottom="5dip">
+			</TextView>
+		</LinearLayout>
+	</LinearLayout>
+</RelativeLayout>
+
+
+
+	
+
+	

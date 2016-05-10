@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <string-array name="single_chose_image">
+        <item>照相机</item>
+        <item>相册</item>
+    </string-array>
+
+</resources>

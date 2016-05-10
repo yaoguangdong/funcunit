@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    
+    <!-- These are the standard attributes that make up a complete theme. -->
+    <declare-styleable name="Theme">
+		<!-- Default AutoCompleteTextView style. -->
+        <attr name="autoCompleteTextViewStyle" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="BallPoolStyle">
+    	<!-- 球形进度文本属性 -->
+        <attr name="bpTextColor" format="color" />
+        <attr name="bpTextSize" format="dimension" />
+        <attr name="bpBackGroundColor" format="color" />
+        <attr name="bpDraftColor" format="color" />
+    </declare-styleable>
+    
+</resources>
