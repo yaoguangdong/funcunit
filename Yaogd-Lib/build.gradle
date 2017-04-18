@@ -66,28 +66,5 @@ task makeProguardJar(type: proguard.gradle.ProGuardTask, dependsOn: "build") {
 //    archives androidSources
 //}
 
-//maven相关
-//apply plugin: 'maven'
-//configurations.all {
-//    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-//}
-//uploadArchives {
-//    repositories {
-//        mavenDeployer {
-//            repository(
-//                    url: "http://10.168.99.116:8084/nexus/content/repositories/releases/") {
-//                authentication(userName: nexusUsername, password: nexusPassword)
-//                pom.groupId = "com.autohome.advertsdk"
-//                pom.artifactId = AHAdvertSDK_ID
-//            }
-//            snapshotRepository(
-//                    url: "http://10.168.99.116:8084/nexus/content/repositories/snapshots/") {
-//                authentication(userName: nexusUsername, password: nexusPassword)
-//                pom.groupId = "com.autohome.advertsdk"
-//                pom.artifactId = AHAdvertSDK_ID
-//            }
-//        }
-//    }
-//}
 
 
