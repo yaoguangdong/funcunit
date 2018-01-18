@@ -12,6 +12,8 @@ public class BaseApplication extends Application{
 		super.onCreate();
 		
 		context = getApplicationContext();
+
+		//L.d("Application " + getResources().getString(R.string.app_name));
 	}
 
 	public static Context getContext() {

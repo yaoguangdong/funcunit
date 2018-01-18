@@ -21,6 +21,7 @@ android {
         main {
             manifest.srcFile 'msrc/main/AndroidManifest.xml'
             java.srcDirs = ['msrc/main/java']
+            resources.srcDirs = ['msrc/main/res']
         }
     }
 }
@@ -37,6 +38,12 @@ task makeJar(type: Copy) {
     into('libs/')
     //include ,exclude参数来设置过滤（只要classes.jar这个文件即可）
     include('classes.jar')
+    //排除不需要的类
+    exclude('com/yaogd/lib/BuildConfig.class')
+    exclude('com/yaogd/lib/BuildConfig$*.class')
+    exclude('**/R.class')
+    exclude('**/R$*.class')
+
     //重命名
     rename ('classes.jar', YGD_LIB_ID + android.defaultConfig.versionName +'.jar')
 }
