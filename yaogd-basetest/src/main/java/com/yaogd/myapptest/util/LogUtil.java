@@ -1,0 +1,153 @@
+package com.yaogd.myapptest.util;
+
+import android.util.Log;
+
+/**
+ * Description:
+ * Created by yaoguangdong on 2018/1/11.
+ */
+
+public class LogUtil {
+
+    private static String TAG = "yaogd";
+    private static boolean isDebug = true;
+
+    /**
+     * 打印Verbose级别日志，使用默认 TAG
+     *
+     * @param msg
+     */
+    public static void v(String msg) {
+        if (isDebug) {
+            Log.v(TAG, msg);
+        }
+    }
+
+    /**
+     * 打印Verbose级别日志
+     *
+     * @param msg
+     */
+    public static void v(String tag, String msg) {
+        if (isDebug) {
+            Log.v(tag, msg);
+        }
+    }
+
+    /**
+     * 打印Info级别日志，使用默认 TAG
+     *
+     * @param msg
+     */
+    public static void i(String msg) {
+        if (isDebug) {
+            Log.i(TAG, msg);
+        }
+    }
+
+    /**
+     * 打印Info级别日志
+     *
+     * @param msg
+     */
+    public static void i(String tag, String msg) {
+        if (isDebug) {
+            Log.i(tag, msg);
+        }
+    }
+
+    /**
+     * 默认 TAG 打印日志
+     *
+     * @param msg
+     */
+    public static void d(String msg) {
+        if (isDebug) {
+            Log.d(TAG, msg);
+        }
+    }
+
+    /**
+     * 日志是否打印可控 d
+     *
+     * @param tag
+     * @param msg
+     */
+    public static void d(String tag, String msg) {
+        if (isDebug) {
+            Log.d(tag, msg);
+        }
+    }
+
+    /**
+     * 默认 TAG 打印日志
+     *
+     * @param msg
+     */
+    public static void w(String msg) {
+        if (isDebug) {
+            Log.d(TAG, msg);
+        }
+    }
+
+    /**
+     * 日志是否打印可控 w
+     *
+     * @param tag
+     * @param msg
+     */
+    public static void w(String tag, String msg) {
+        if (isDebug) {
+            Log.w(tag, msg);
+        }
+    }
+
+    /**
+     * 日志是否打印可控 w
+     *
+     * @param tag
+     * @param msg
+     */
+    public static void w(String tag, Throwable tr) {
+        if (isDebug) {
+            Log.w(tag, tr);
+        }
+    }
+
+    /**
+     * 日志是否打印可控 e
+     *
+     * @param tag
+     * @param msg
+     */
+    public static void e(String tag, String msg) {
+        if (isDebug) {
+            Log.e(tag, msg);
+        }
+    }
+
+    /**
+     * 日志是否打印e
+     *
+     * @param tag
+     * @param msg
+     */
+    public static void e(String msg) {
+        if (isDebug) {
+            Log.e(TAG, msg);
+        }
+    }
+
+    /**
+     * 日志是否打印e
+     *
+     * @param tag
+     * @param msg
+     * @param tr
+     */
+    public static void e(String tag, String msg, Throwable tr) {
+        if (isDebug) {
+            Log.e(tag, msg, tr);
+        }
+    }
+}
