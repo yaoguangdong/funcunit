@@ -237,7 +237,6 @@ public class YBrowserActivity extends Activity {
     /**
      * 主要是4.x版本，关闭辅助模式
      * 防止错误系统日志打印：
-     * android.app.ServiceConnectionLeaked: Activity com.autohome.mainlib.business.ui.commonbrowser.activity.CommBrowserActivity has leaked ServiceConnection
      * com.android.org.chromium.com.googlecode.eyesfree.braille.selfbraille.SelfBrailleClient$Connection@4561fd90 that was originally bound here
      * ......
      */
