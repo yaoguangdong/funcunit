@@ -9,16 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/Yaogd-IPC" />
-            <option value="$PROJECT_DIR$/Yaogd-ImageProcess" />
-            <option value="$PROJECT_DIR$/Yaogd-Lib" />
-            <option value="$PROJECT_DIR$/Yaogd-WebView-FullScreanVideo" />
-            <option value="$PROJECT_DIR$/Yaogd-scancard" />
-            <option value="$PROJECT_DIR$/Yaogd-screenon" />
-            <option value="$PROJECT_DIR$/Yaogd_web_unit" />
             <option value="$PROJECT_DIR$/yaogd-basetest" />
-            <option value="$PROJECT_DIR$/yaogd-hook" />
-            <option value="$PROJECT_DIR$/yaogd-lib-web" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

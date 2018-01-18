@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Yaogd-IPC/Yaogd-IPC.iml" filepath="$PROJECT_DIR$/Yaogd-IPC/Yaogd-IPC.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Yaogd-ImageProcess/Yaogd-ImageProcess.iml" filepath="$PROJECT_DIR$/Yaogd-ImageProcess/Yaogd-ImageProcess.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Yaogd-Lib/Yaogd-Lib.iml" filepath="$PROJECT_DIR$/Yaogd-Lib/Yaogd-Lib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Yaogd-WebView-FullScreanVideo/Yaogd-WebView-FullScreanVideo.iml" filepath="$PROJECT_DIR$/Yaogd-WebView-FullScreanVideo/Yaogd-WebView-FullScreanVideo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Yaogd-scancard/Yaogd-scancard.iml" filepath="$PROJECT_DIR$/Yaogd-scancard/Yaogd-scancard.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Yaogd-screenon/Yaogd-screenon.iml" filepath="$PROJECT_DIR$/Yaogd-screenon/Yaogd-screenon.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Yaogd_web_unit/Yaogd_web_unit.iml" filepath="$PROJECT_DIR$/Yaogd_web_unit/Yaogd_web_unit.iml" />
       <module fileurl="file://$PROJECT_DIR$/funcunit.iml" filepath="$PROJECT_DIR$/funcunit.iml" />
       <module fileurl="file://$PROJECT_DIR$/yaogd-basetest/yaogd-basetest.iml" filepath="$PROJECT_DIR$/yaogd-basetest/yaogd-basetest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/yaogd-hook/yaogd-hook.iml" filepath="$PROJECT_DIR$/yaogd-hook/yaogd-hook.iml" />
-      <module fileurl="file://$PROJECT_DIR$/yaogd-lib-web/yaogd-lib-web.iml" filepath="$PROJECT_DIR$/yaogd-lib-web/yaogd-lib-web.iml" />
     </modules>
   </component>
 </project>
