@@ -3,6 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
+              android:padding="5dp"
     >
     <TextView
         android:layout_width="wrap_content"
@@ -15,7 +16,6 @@
         android:id="@+id/tab_c_btn_test_1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_margin="5dp"
         android:layout_gravity="center"
         android:onClick="clickBtn01"
         android:text="测试1"/>
@@ -24,7 +24,6 @@
         android:id="@+id/tab_c_btn_test_2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_margin="5dp"
         android:layout_gravity="center"
         android:onClick="clickBtn02"
         android:text="测试2"/>
